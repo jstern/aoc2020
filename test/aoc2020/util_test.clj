@@ -3,5 +3,5 @@
             [aoc2020.util :as util]))
 
 (deftest test-input
-  (testing "FIXME, I fail."
+  (testing "finds file and reads input"
     (is (= "input 0\n" (util/input "0.txt")))))
