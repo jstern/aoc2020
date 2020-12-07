@@ -14,7 +14,7 @@
     (is (= (set (find-values 4 (set [1 2 3])))
            (set [1 3])))))
 
-(deftest test-pairs
+(deftest test-sum-pairs
   (testing "returns {(x1 + x2) #{x1 x2}, ...}"
     (is (= {3 #{1 2} 4 #{1 3} 5 #{2 3}}
            (sum-pairs [1 2 3])))))
