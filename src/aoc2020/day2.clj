@@ -1,7 +1,6 @@
 (ns aoc2020.day2
   (:require [aoc2020.util :as util]))
 
-
 (defn char-freqs
   [cs]
   (frequencies (seq (char-array cs))))
@@ -20,6 +19,7 @@
 
 (defmulti valid? (fn [e] (:version (:policy e))))
 
+
 (defmethod valid? :v1 [entry]
   (let [text   (:password entry)
         policy (:policy entry)
@@ -28,7 +28,19 @@
         c-freq (num-occurs (:p3 policy) text)]
     (and (>= c-freq c-min) (<= c-freq c-max))))
 
-(defmethod valid? :v2 [entry] false)
+
+(defn char-at-bit [cs c pos]
+  (if (= c (nth cs pos)) 1 0))
+
+
+(defmethod valid? :v2 [entry]
+  (let [text   (char-array (:password entry))
+        policy (:policy entry)
+        p1     (- (:p1 policy) 1) ;; convert to 0-index
+        p2     (- (:p2 policy) 1) ;; convert to 0-index
+        p3     (:p3 policy)]
+    (= 1 (bit-xor (char-at-bit text p3 p1) (char-at-bit text p3 p2)))))
+
 
 (def entry-re #"(\d+)-(\d+) (.): (.+)")
 
@@ -52,3 +64,8 @@
 (defn part1
   []
   (count (for [entry (entries :v1) :when (valid? entry)] 1)))
+
+
+(defn part2
+  []
+  (count (for [entry (entries :v2) :when (valid? entry)] 1)))
