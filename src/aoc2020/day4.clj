@@ -71,7 +71,7 @@
 
 (defn read-passport
   [pvec]
-  (into {} (map #(read-field %) pvec))) 
+  (into {} (map #(read-field %) pvec)))
 
 (defn passports
   [batch]

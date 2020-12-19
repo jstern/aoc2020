@@ -33,6 +33,7 @@
   (let [slope (clojure.string/split-lines (util/input "day3.txt"))]
     (reduce
       *
+      ;; (count-hits [dx dy slope]) for each [dx dy]
       (map
         #(apply count-hits (conj % slope))
         [[1 1] [3 1] [5 1] [7 1] [1 2]]))))
