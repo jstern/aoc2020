@@ -65,4 +65,16 @@
        (find-containers "shiny gold")
        (count)))
 
-(defn part2 [] "bye")
+
+(defn count-bags
+  [rules bag n]
+  (let [bags  (get rules bag)]
+    (+ n (* n (reduce + (map #(apply count-bags rules %) (seq bags)))))))
+
+
+(defn part2
+  []
+  (let [rules (->> (util/input "day7.txt")
+                   (parse-rules)
+                   (into {}))]
+    (- (count-bags rules "shiny gold" 1) 1)))

@@ -53,9 +53,9 @@ dotted black bags contain no other bags.")
 (deftest test-find-containers
   (testing "finds all containers for subject"
     (let [containers {:p #{:x :r}, :x #{:y :a}, :y #{:z}, :z #{:p}}
-                     ;; p -> r
-                     ;;   -> x -> y -> z -> p
-                     ;;        -> a
+                     ;; -> r
+                     ;; -> x -> y -> z -> p
+                     ;;      -> a
           expected #{:p :r :x :y :z :a}
           result (d7/find-containers :p containers)]
       (is (= expected result))))
@@ -68,3 +68,19 @@ dotted black bags contain no other bags.")
 
   (testing "works for tight cycle"
     (is (= #{:p} (d7/find-containers :p {:p #{:p}})))))
+
+
+(def another-example
+"shiny gold bags contain 2 dark red bags.
+dark red bags contain 2 dark orange bags.
+dark orange bags contain 2 dark yellow bags.
+dark yellow bags contain 2 dark green bags.
+dark green bags contain 2 dark blue bags.
+dark blue bags contain 2 dark violet bags.
+dark violet bags contain no other bags.")
+
+
+(deftest test-count-bags
+  (testing "official example"
+    (let [rules (into {} (d7/parse-rules another-example))]
+      (is (= 127 (d7/count-bags rules "shiny gold" 1))))))
