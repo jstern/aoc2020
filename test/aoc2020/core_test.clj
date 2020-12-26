@@ -3,5 +3,6 @@
             [aoc2020.core :refer :all]))
 
 (deftest test-solution
-  (testing "returns result of day/part fn"
-    (is (= "Hello, aoc2020!" (solution "day0" "part1")))))
+  (testing "returns day/part fn"
+    (let [solution (solution-fn "day0" "part1")]
+      (is (= "Hello, aoc2020!" (solution))))))
