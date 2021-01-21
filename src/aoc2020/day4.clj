@@ -87,8 +87,8 @@
 (defn valid-spec?
   [doc]
   (let [valid (s/valid? ::passport doc)]
-    (println doc "-" valid)
-    (if (not valid) (println (s/explain ::passport doc)))
+    ;; (println doc "-" valid)
+    ;; (if (not valid) (println (s/explain ::passport doc)))
     valid))
 
 
@@ -102,7 +102,7 @@
     (valid-ecl (::ecl doc))
     (valid-hcl (::hcl doc))
     (valid-pid (::pid doc)))]
-    (println doc "-" valid)
+    ;; (println doc "-" valid)
     (if (not valid) (println (s/explain ::passport doc)))
     valid))
 
@@ -130,6 +130,6 @@
   (doseq [[i p] (map-indexed (fn [x y] [x y]) (passports (util/input "day4.txt")))]
     (if (#{236} i)
       (do
-        (println i)
-        (println p)
+        ;; (println i)
+        ;; (println p)
         (s/explain ::passport p)))))

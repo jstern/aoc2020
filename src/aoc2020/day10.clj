@@ -51,7 +51,7 @@
 (def paths
   (memoize
     (fn [n]
-      (println "paths" n)
+      ;;(println "paths" n)
       (if
         (= 0 n)
         1

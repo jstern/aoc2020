@@ -45,7 +45,7 @@
   ;; fewer intervening candidate times to check
   [constraints]
   (let [[f1 o1] (first constraints)]
-    (println "starting with" [f1 o1] "t =" (- f1 o1) "step =" f1)
+    ;; (println "starting with" [f1 o1] "t =" (- f1 o1) "step =" f1)
     (loop [t    (- f1 o1)
            step f1
            cs   (rest constraints)]
@@ -56,7 +56,7 @@
             ;; works for next constraint
             ;; start looping from t with bigger step over remaining cs
             (do
-              (println "matched" [f2 o2] "at" t "; step " step "->" (* step f2))
+              ;; (println "matched" [f2 o2] "at" t "; step " step "->" (* step f2))
               (recur t (* step f2) (rest cs)))
             ;; doesn't work, keep looping with current step and cs
             (recur (+ t step) step cs)))))))
