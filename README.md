@@ -1,5 +1,7 @@
 # aoc2020
 
+Solutions for [advent of code 2020](https://adventofcode.com/2020/).
+
 ![Clojure CI](https://github.com/jstern/aoc2020/workflows/Clojure%20CI/badge.svg)
 
 Run tests with `lein test`
